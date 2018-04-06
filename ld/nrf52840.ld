@@ -1,8 +1,8 @@
 MEMORY
 {
-  SD (rx) : ORIGIN = 0x00000, LENGTH = 0x1C000
-  FLASH (rx) : ORIGIN = 0x1C000, LENGTH = 0x64000
-  RAM (rwx) : ORIGIN = 0x20002ef8, LENGTH = 0xd108
+  SD (rx) : ORIGIN = 0x00000, LENGTH = 0x26000
+  FLASH (rx) : ORIGIN = 0x26000, LENGTH = 0xD0000
+  RAM (rwx) : ORIGIN = 0x20008000, LENGTH = 0x38000
 }
 OUTPUT_FORMAT ("elf32-littlearm", "elf32-bigarm", "elf32-littlearm")
 ENTRY(Reset_Handler)
