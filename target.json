@@ -40,7 +40,7 @@
         {
             "name":"codal-core",
             "url":"https://github.com/lancaster-university/codal-core",
-            "branch":"master",
+            "branch":"nrf52840",
             "type":"git"
         },
         {
