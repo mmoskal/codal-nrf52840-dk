@@ -88,6 +88,8 @@ BLENano::BLENano() :
     serial.baud(115200);
 }
 
+uint16_t colors[60*70];
+
 /**
   * Post constructor initialisation method.
   *
@@ -133,11 +135,12 @@ int BLENano::init()
     DMESG("start!");
 
     screen.init();
-    screen.setAddrWindow(10, 10, 20, 30);
-    uint16_t colors[20*30];
+    screen.setAddrWindow(10, 10, 60, 70);
     for (uint32_t i = 0; i < sizeof(colors)/2; ++i) {
         colors[i] = color565(i % 10 < 5 ? 0xff0000 : 0x0000ff);
     }
+    screen.sendColors(colors, sizeof(colors));
+    memset(colors, 0xff, sizeof(colors));
     screen.sendColors(colors, sizeof(colors));
 
     return DEVICE_OK;
