@@ -43,6 +43,7 @@ DEALINGS IN THE SOFTWARE.
 #include "MultiButton.h"
 #include "NRF52Pin.h"
 #include "MbedI2C.h"
+#include "ST7735.h"
 
 #include "MbedSerial.h"
 #include "BLENanoIO.h"
@@ -82,6 +83,9 @@ namespace codal
             MessageBus                  messageBus;
             codal::_mbed::Timer         timer;
             BLENanoIO                  io;
+            
+            ST7735 screen;
+
             //Button                      buttonA;
 
             // Persistent key value store

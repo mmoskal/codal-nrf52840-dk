@@ -28,6 +28,7 @@ DEALINGS IN THE SOFTWARE.
 #include "mbed.h"
 #include "CodalConfig.h"
 #include "NRF52Pin.h"
+#include "NRF52SPI.h"
 
 //
 // Component IDs for each pin.
@@ -76,17 +77,20 @@ namespace codal
         public:
 
             NRF52Pin          pin[0];
+
+            NRF52Pin          P3;
+            NRF52Pin          P4;
             NRF52Pin          P28;
             NRF52Pin          P29;
             NRF52Pin          P30;
-            NRF52Pin          P2;
-            NRF52Pin          P3;
-            NRF52Pin          P4;
-            NRF52Pin          P5;
-            NRF52Pin          P6;
-            NRF52Pin          P7;
-            NRF52Pin          P8;
-            NRF52Pin          led;
+            NRF52Pin          P31;
+
+            NRF52Pin          led1;
+            NRF52Pin          led2;
+            NRF52Pin          led3;
+            NRF52Pin          led4;
+
+            NRF52SPI spi;
 
             /**
              * Constructor.

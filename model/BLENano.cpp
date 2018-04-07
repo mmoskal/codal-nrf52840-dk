@@ -30,22 +30,7 @@ using namespace codal;
 
 BLENano *ble_nano_device_instance = NULL;
 
-/**
-  * Constructor.
-  *
-  * Create a representation of a BLENano device, which includes member variables
-  * that represent various device drivers used to control aspects of the BLENano.
-  */
-BLENano::BLENano() :
-    serial(P0_2, NC),
-    messageBus(),
-    timer(),
-    io()
-{
-    // Clear our status
-    status = 0;
-    ble_nano_device_instance = this;
-
+void early_init(){
     // Ensure NFC pins are configured as GPIO. If not, update the non-volatile UICR.
     if (NRF_UICR->NFCPINS)
     {
@@ -64,6 +49,39 @@ BLENano::BLENano() :
         // Reset, so the changes can take effect.
         NVIC_SystemReset();
     }
+
+
+/*
+    uint32_t *old_vectors = (uint32_t *)SCB->VTOR;
+    if ((uint32_t)old_vectors < 0x20000000) {
+        uint32_t *vectors = (uint32_t*)malloc(NVIC_NUM_VECTORS * 4);
+        DMESG("vtor %p -> %p", SCB->VTOR, vectors);
+        for (int i = 0; i < NVIC_NUM_VECTORS; i++) {
+            vectors[i] = old_vectors[i];
+        }
+        SCB->VTOR = (uint32_t)vectors;
+    }
+    */
+}
+
+/**
+  * Constructor.
+  *
+  * Create a representation of a BLENano device, which includes member variables
+  * that represent various device drivers used to control aspects of the BLENano.
+  */
+BLENano::BLENano() :
+    serial(P0_2, NC),
+    messageBus(),
+    timer(),
+    io(),
+    screen(io.spi, io.P28, io.P29)
+{
+    // Clear our status
+    status = 0;
+    ble_nano_device_instance = this;
+
+    early_init();
 
     // Configure serial port for debugging
     //serial.set_flow_control(mbed::Serial::Disabled);
@@ -109,8 +127,18 @@ int BLENano::init()
     // which saves processor time, memeory and battery life.
     messageBus.listen(DEVICE_ID_MESSAGE_BUS_LISTENER, DEVICE_EVT_ANY, this, &BLENano::onListenerRegisteredEvent);
 
-    codal_dmesg_set_flush_fn(nano_dmesg_flush);
+    //codal_dmesg_set_flush_fn(nano_dmesg_flush);
     status |= DEVICE_COMPONENT_STATUS_IDLE_TICK;
+
+    DMESG("start!");
+
+    screen.init();
+    screen.setAddrWindow(10, 10, 20, 30);
+    uint16_t colors[20*30];
+    for (uint32_t i = 0; i < sizeof(colors)/2; ++i) {
+        colors[i] = color565(i % 10 < 5 ? 0xff0000 : 0x0000ff);
+    }
+    screen.sendColors(colors, sizeof(colors));
 
     return DEVICE_OK;
 }
