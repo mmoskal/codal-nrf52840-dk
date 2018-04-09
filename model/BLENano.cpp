@@ -88,7 +88,26 @@ BLENano::BLENano() :
     serial.baud(115200);
 }
 
-uint16_t colors[60*70];
+uint32_t colors[16*60];
+
+uint32_t palette[] = {
+        0x000000,
+        0xffffff,
+        0x33e2e4,
+        0x05b3e0,
+        0x3d30ad,
+        0xb09eff,
+        0x5df51f,
+        0x6a8927,
+        0x65471f,
+        0x98294a,
+        0xf80000,
+        0xe30ec0,
+        0xff9da5,
+        0xff9005,
+        0xefe204,
+        0x000000
+};
 
 /**
   * Post constructor initialisation method.
@@ -135,13 +154,16 @@ int BLENano::init()
     DMESG("start!");
 
     screen.init();
-    screen.setAddrWindow(10, 10, 60, 70);
-    for (uint32_t i = 0; i < sizeof(colors)/2; ++i) {
-        colors[i] = color565(i % 10 < 5 ? 0xff0000 : 0x0000ff);
+    screen.setAddrWindow(0, 10, 128, 70);
+    for (uint32_t i = 0; i < sizeof(colors)/4; ++i) {
+        colors[i] = 0x11111111 * (i&0xf);
     }
-    screen.sendColors(colors, sizeof(colors));
-    memset(colors, 0xff, sizeof(colors));
-    screen.sendColors(colors, sizeof(colors));
+    //screen.waitForSendDone();
+    screen.sendIndexedImage((const uint8_t *)colors, sizeof(colors), palette);    
+    //screen.sendColors(colors, sizeof(colors));
+
+    //memset(colors, 0xff, sizeof(colors));
+    //screen.sendColors(colors, sizeof(colors));
 
     return DEVICE_OK;
 }
