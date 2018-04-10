@@ -84,6 +84,8 @@ namespace codal
             NRF52Pin          P29;
             NRF52Pin          P30;
             NRF52Pin          P31;
+            NRF52Pin          P11;
+            NRF52Pin          P12;
 
             NRF52Pin          led1;
             NRF52Pin          led2;

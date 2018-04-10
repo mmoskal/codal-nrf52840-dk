@@ -88,7 +88,11 @@ BLENano::BLENano() :
     serial.baud(115200);
 }
 
-uint32_t colors[16*60];
+#define SCREEN_TEST 0
+
+#if SCREEN_TEST
+uint32_t colors[16*100];
+uint8_t screen4[128*128/2];
 
 uint32_t palette[] = {
         0x000000,
@@ -108,6 +112,10 @@ uint32_t palette[] = {
         0xefe204,
         0x000000
 };
+
+uint32_t expPalette[256];
+#endif
+
 
 /**
   * Post constructor initialisation method.
@@ -153,17 +161,52 @@ int BLENano::init()
 
     DMESG("start!");
 
+#if SCREEN_TEST
     screen.init();
-    screen.setAddrWindow(0, 10, 128, 70);
+
     for (uint32_t i = 0; i < sizeof(colors)/4; ++i) {
         colors[i] = 0x11111111 * (i&0xf);
     }
-    //screen.waitForSendDone();
-    screen.sendIndexedImage((const uint8_t *)colors, sizeof(colors), palette);    
+
+    screen.expandPalette(palette, expPalette);
+
+    memset(screen4, 4, sizeof(screen4));
+    screen.setAddrWindow(0, 0, 128, 128);
+    screen.sendIndexedImage(screen4, sizeof(screen4), expPalette);        
+    
+    int delay = 4000;
+
+    //io.P11.setPull(PullMode::Up);
+    //io.P12.setPull(PullMode::Up);
+
+    while (1)
+    for (int i = 0; i < 128; ++i) {
+        memcpy(screen4 + i, colors, sizeof(colors));
+        DMESG("tm0 %d", (int)system_timer_current_time_us());
+        screen.waitForSendDone();
+        DMESG("tm1 %d", (int)system_timer_current_time_us());
+        screen.sendIndexedImage(screen4, sizeof(screen4), expPalette);        
+        DMESG("tm2 %d", (int)system_timer_current_time_us());
+       // wait_us(delay);
+        /*
+        if (io.P11.getDigitalValue() == 0) {
+            delay -= 100;
+            DMESG("D- %d", delay);
+        }
+        if (io.P12.getDigitalValue() == 0) {
+            delay += 100;
+            DMESG("D+ %d", delay);
+        }
+        */
+    }
+
+    //screen.setAddrWindow(0, 10, 128, 70);
+    //screen.sendIndexedImage((const uint8_t *)colors, sizeof(colors), palette);    
     //screen.sendColors(colors, sizeof(colors));
 
     //memset(colors, 0xff, sizeof(colors));
     //screen.sendColors(colors, sizeof(colors));
+#endif
 
     return DEVICE_OK;
 }
