@@ -34,19 +34,19 @@
     "generate_hex": true, 
     "libraries": [
         {
-            "branch": "a39ae81ae51eba6472226033d85b4e2fb666c93b", 
+            "branch": "6a3c01b5977fda017b6c05797630c65dcb66f830", 
             "name": "codal-core", 
             "type": "git", 
             "url": "https://github.com/lancaster-university/codal-core"
         }, 
         {
-            "branch": "695fedba7d55f4e6f239f21711a7dfb60dcdca51", 
+            "branch": "015cf8dd0714165ad38ef56762c14585d10e0411", 
             "name": "codal-mbedos", 
             "type": "git", 
             "url": "https://github.com/lancaster-university/codal-mbedos"
         }, 
         {
-            "branch": "0684207473fa4450fe714641200b7d373682bebc", 
+            "branch": "998cdf1d7a1a9563e013e98b9d81f46c83ce8fef", 
             "name": "codal-nrf52", 
             "type": "git", 
             "url": "https://github.com/lancaster-university/codal-nrf52"
@@ -55,6 +55,6 @@
     "linker_flags": "-Wl,--no-wchar-size-warning -Wl,-wrap,main -Wl,--gc-sections -Wl,--wrap,exit -Wl,--wrap,atexit -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wl,--start-group -lstdc++ -lsupc++ -lm -lc -lgcc -lnosys -Wl,--end-group", 
     "post_process": "", 
     "processor": "NRF52840", 
-    "snapshot_version": "v0.0.12", 
+    "snapshot_version": "v0.0.13", 
     "toolchain": "ARM_GCC"
 }
