@@ -22,7 +22,6 @@ add_library(codal-nrf52840-dk ${TOP_LEVEL_SOURCE_FILES} ${MODEL_SOURCE_FILES})
 target_link_libraries(
     codal-nrf52840-dk
     codal-core
-    codal-mbedos
     codal-nrf52
 )
 

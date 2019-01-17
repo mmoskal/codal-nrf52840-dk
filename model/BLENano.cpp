@@ -25,12 +25,31 @@ DEALINGS IN THE SOFTWARE.
 
 #include "BLENano.h"
 #include "Timer.h"
+#include "nrf52.h"
+#include "nrf52_bitfields.h"
 
 using namespace codal;
 
 BLENano *ble_nano_device_instance = NULL;
 
-void early_init(){
+/**
+  * Constructor.
+  *
+  * Create a representation of a BLENano device, which includes member variables
+  * that represent various device drivers used to control aspects of the BLENano.
+  */
+BLENano::BLENano() :
+    io(),
+    timer1(NRF_TIMER1, TIMER1_IRQn),
+    timer(timer1),
+    messageBus(),
+    sws(io.P30),
+    radio()
+{
+    // Clear our status
+    status = 0;
+    ble_nano_device_instance = this;
+
     // Ensure NFC pins are configured as GPIO. If not, update the non-volatile UICR.
     if (NRF_UICR->NFCPINS)
     {
@@ -50,72 +69,10 @@ void early_init(){
         NVIC_SystemReset();
     }
 
-
-/*
-    uint32_t *old_vectors = (uint32_t *)SCB->VTOR;
-    if ((uint32_t)old_vectors < 0x20000000) {
-        uint32_t *vectors = (uint32_t*)malloc(NVIC_NUM_VECTORS * 4);
-        DMESG("vtor %p -> %p", SCB->VTOR, vectors);
-        for (int i = 0; i < NVIC_NUM_VECTORS; i++) {
-            vectors[i] = old_vectors[i];
-        }
-        SCB->VTOR = (uint32_t)vectors;
-    }
-    */
-}
-
-/**
-  * Constructor.
-  *
-  * Create a representation of a BLENano device, which includes member variables
-  * that represent various device drivers used to control aspects of the BLENano.
-  */
-BLENano::BLENano() :
-    serial(P0_2, NC),
-    messageBus(),
-    timer(),
-    io(),
-    screen(io.spi, io.P28, io.P29)
-{
-    // Clear our status
-    status = 0;
-    ble_nano_device_instance = this;
-
-    early_init();
-
     // Configure serial port for debugging
     //serial.set_flow_control(mbed::Serial::Disabled);
-    serial.baud(115200);
+    // serial.baud(115200);
 }
-
-#define SCREEN_TEST 0
-
-#if SCREEN_TEST
-uint32_t colors[16*100];
-uint8_t screen4[128*128/2];
-
-uint32_t palette[] = {
-        0x000000,
-        0xffffff,
-        0x33e2e4,
-        0x05b3e0,
-        0x3d30ad,
-        0xb09eff,
-        0x5df51f,
-        0x6a8927,
-        0x65471f,
-        0x98294a,
-        0xf80000,
-        0xe30ec0,
-        0xff9da5,
-        0xff9005,
-        0xefe204,
-        0x000000
-};
-
-uint32_t expPalette[256];
-#endif
-
 
 /**
   * Post constructor initialisation method.
@@ -156,57 +113,13 @@ int BLENano::init()
     // which saves processor time, memeory and battery life.
     messageBus.listen(DEVICE_ID_MESSAGE_BUS_LISTENER, DEVICE_EVT_ANY, this, &BLENano::onListenerRegisteredEvent);
 
-    //codal_dmesg_set_flush_fn(nano_dmesg_flush);
-    status |= DEVICE_COMPONENT_STATUS_IDLE_TICK;
-
-    DMESG("start!");
-
-#if SCREEN_TEST
-    screen.init();
-
-    for (uint32_t i = 0; i < sizeof(colors)/4; ++i) {
-        colors[i] = 0x11111111 * (i&0xf);
-    }
-
-    screen.expandPalette(palette, expPalette);
-
-    memset(screen4, 4, sizeof(screen4));
-    screen.setAddrWindow(0, 0, 128, 128);
-    screen.sendIndexedImage(screen4, sizeof(screen4), expPalette);        
-    
-    int delay = 4000;
-
-    //io.P11.setPull(PullMode::Up);
-    //io.P12.setPull(PullMode::Up);
-
-    while (1)
-    for (int i = 0; i < 128; ++i) {
-        memcpy(screen4 + i, colors, sizeof(colors));
-        DMESG("tm0 %d", (int)system_timer_current_time_us());
-        screen.waitForSendDone();
-        DMESG("tm1 %d", (int)system_timer_current_time_us());
-        screen.sendIndexedImage(screen4, sizeof(screen4), expPalette);        
-        DMESG("tm2 %d", (int)system_timer_current_time_us());
-       // wait_us(delay);
-        /*
-        if (io.P11.getDigitalValue() == 0) {
-            delay -= 100;
-            DMESG("D- %d", delay);
-        }
-        if (io.P12.getDigitalValue() == 0) {
-            delay += 100;
-            DMESG("D+ %d", delay);
-        }
-        */
-    }
-
-    //screen.setAddrWindow(0, 10, 128, 70);
-    //screen.sendIndexedImage((const uint8_t *)colors, sizeof(colors), palette);    
-    //screen.sendColors(colors, sizeof(colors));
-
-    //memset(colors, 0xff, sizeof(colors));
-    //screen.sendColors(colors, sizeof(colors));
+#if CONFIG_ENABLED(DMESG_SERIAL_DEBUG)
+#if DEVICE_DMESG_BUFFER_SIZE > 0
+    codal_dmesg_set_flush_fn(nano_dmesg_flush);
 #endif
+#endif
+
+    status |= DEVICE_COMPONENT_STATUS_IDLE_TICK;
 
     return DEVICE_OK;
 }
@@ -229,20 +142,22 @@ void BLENano::onListenerRegisteredEvent(Event evt)
   */
 void BLENano::idleCallback()
 {
+#if DEVICE_DMESG_BUFFER_SIZE > 0
     codal_dmesg_flush();
+#endif
 }
 
 void nano_dmesg_flush()
 {
 #if CONFIG_ENABLED(DMESG_SERIAL_DEBUG)
 #if DEVICE_DMESG_BUFFER_SIZE > 0
-    if (codalLogStore.ptr > 0 && ble_nano_device_instance)
-    {
-        for (uint32_t i=0; i<codalLogStore.ptr; i++)
-            ((BLENano *)ble_nano_device_instance)->serial.putc(codalLogStore.buffer[i]);
+    // if (codalLogStore.ptr > 0 && ble_nano_device_instance)
+    // {
+    //     for (uint32_t i=0; i<codalLogStore.ptr; i++)
+    //         ((BLENano *)ble_nano_device_instance)->serial.putc(codalLogStore.buffer[i]);
 
-        codalLogStore.ptr = 0;
-    }
+    //     codalLogStore.ptr = 0;
+    // }
 #endif
 #endif
 }
