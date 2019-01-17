@@ -2,7 +2,7 @@
 #include "codal_target_hal.h"
 #include "CodalDmesg.h"
 #include "CodalCompat.h"
-#include "nrf_delay.h"
+#include "Timer.h"
 
 void target_enable_irq()
 {
@@ -19,15 +19,14 @@ void target_wait_for_event()
     __WFE();
 }
 
-void nrf_delay_ms(uint32_t);
 void target_wait(uint32_t milliseconds)
 {
-    nrf_delay_ms(milliseconds);
+    codal::system_timer_wait_ms(milliseconds);
 }
 
 void target_wait_us(unsigned long us)
 {
-    nrf_delay_us(us);
+    codal::system_timer_wait_us(us);
 }
 
 uint32_t target_get_serial()

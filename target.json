@@ -6,7 +6,7 @@
     "post_process":"",
     "generate_bin":true,
     "generate_hex":true,
-    "definitions":"-DNRF52840 -DTARGET_MCU_NRF52840 -DNRF52 -DNRF5 -D__CORTEX_M4 -DSOFTDEVICE_PRESENT -DS140 -DTOOLCHAIN_GCC",
+    "definitions":"-DNRF52840_XXAA -DNRF52840 -DTARGET_MCU_NRF52840 -DNRF52 -DNRF5 -D__CORTEX_M4 -DS140 -DTOOLCHAIN_GCC",
     "cmake_definitions":{
         "MBED_LEGACY_TOOLCHAIN":"GCC_ARM;"
     },
