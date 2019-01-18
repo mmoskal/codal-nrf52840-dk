@@ -15,6 +15,7 @@ SECTIONS
 
     .text :
     {
+        KEEP(*(.isr_vector))
         KEEP(*(.Vectors))
         *(.text*)
         KEEP(*(.init))
