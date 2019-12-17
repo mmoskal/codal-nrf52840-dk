@@ -19,57 +19,14 @@ void target_wait_for_event()
     __WFE();
 }
 
-void target_wait(uint32_t milliseconds)
-{
-    codal::system_timer_wait_ms(milliseconds);
-}
-
-void target_wait_us(unsigned long us)
-{
-    codal::system_timer_wait_us(us);
-}
-
 uint64_t target_get_serial()
 {
     return ((uint64_t)NRF_FICR->DEVICEID[1] << 32) | NRF_FICR->DEVICEID[0];
 }
 
-int target_seed_random(uint32_t rand)
-{
-    return codal::seed_random(rand);
-}
-
-int target_random(int max)
-{
-    return codal::random(max);
-}
-
 void target_reset()
 {
     NVIC_SystemReset();
-}
-
-__attribute__((weak))
-void target_panic(int statusCode)
-{
-    target_disable_irq();
-
-#if DEVICE_DMESG_BUFFER_SIZE > 0
-    DMESG("*** CODAL PANIC : [%d]", statusCode);
-    while (1)
-    {
-    }
-#else
-    while (1)
-    {
-    }
-    // Serial pc(USBTX, USBRX);
-    // while (1)
-    // {
-    //     pc.printf("*** CODAL PANIC : [%.3d]\n", statusCode);
-    //     wait_ms(500);
-    // }
-#endif
 }
 
 /**
