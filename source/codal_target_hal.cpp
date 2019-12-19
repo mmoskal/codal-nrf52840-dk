@@ -29,6 +29,17 @@ void target_reset()
     NVIC_SystemReset();
 }
 
+
+extern "C" void _start();
+extern "C" __attribute__((weak)) void user_init() {}
+
+extern "C" void target_start()
+{
+    NRF_NVMC->ICACHECNF = NVMC_ICACHECNF_CACHEEN_Enabled;
+    user_init();
+    _start();
+}
+
 /**
   *  Thread Context for an ARM Cortex core.
   *
