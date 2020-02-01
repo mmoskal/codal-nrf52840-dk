@@ -31,19 +31,19 @@
     }, 
     "cpp_flags": "-std=c++11 -fwrapv -fno-rtti -fno-threadsafe-statics -fno-exceptions -fno-unwind-tables -Wl,--gc-sections -Wl,--sort-common -Wl,--sort-section=alignment -Wno-array-bounds", 
     "cpu_opts": "-mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=softfp", 
-    "definitions":"-DNRF52840_XXAA -DNRF52840 -DTARGET_MCU_NRF52840 -DNRF5 -D__CORTEX_M4 -DS140 -DTOOLCHAIN_GCC -D__START=target_start",
+    "definitions": "-DNRF52840_XXAA -DNRF52840 -DTARGET_MCU_NRF52840 -DNRF5 -D__CORTEX_M4 -DS140 -DTOOLCHAIN_GCC -D__START=target_start", 
     "device": "NRF52840_DK", 
     "generate_bin": true, 
     "generate_hex": true, 
     "libraries": [
         {
-            "branch": "4fd5b748b24de2511908f6999bb2ef28c65fb546", 
+            "branch": "7e459b8d7aebeef5591e636f5b5ba6d1053562f6", 
             "name": "codal-core", 
             "type": "git", 
             "url": "https://github.com/lancaster-university/codal-core"
         }, 
         {
-            "branch": "8fdb25175f699a3713c601da09cbc1c17dae5803", 
+            "branch": "ef9c703a40542a4495eeb62329b5afcf8f9f137f", 
             "name": "codal-nrf52", 
             "type": "git", 
             "url": "https://github.com/lancaster-university/codal-nrf52"
@@ -52,6 +52,6 @@
     "linker_flags": "-Wl,--no-wchar-size-warning -Wl,--gc-sections -Wl,--wrap,atexit -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wl,--start-group -lstdc++ -lsupc++ -lm -lc -lgcc -lnosys -Wl,--end-group", 
     "post_process": "", 
     "processor": "NRF52840", 
-    "snapshot_version": "v1.0.3", 
+    "snapshot_version": "v1.0.4", 
     "toolchain": "ARM_GCC"
 }
