@@ -43,7 +43,7 @@
             "url": "https://github.com/lancaster-university/codal-core"
         }, 
         {
-            "branch": "491c95298400a50a7d1ba7ffb3d5d745b730bf01", 
+            "branch": "c9cea3d86d17210a91a692ec4e325a0e9ecd03dc", 
             "name": "codal-nrf52", 
             "type": "git", 
             "url": "https://github.com/lancaster-university/codal-nrf52"
@@ -52,6 +52,6 @@
     "linker_flags": "-Wl,--no-wchar-size-warning -Wl,--gc-sections -Wl,--wrap,atexit -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wl,--start-group -lstdc++ -lsupc++ -lm -lc -lgcc -lnosys -Wl,--end-group", 
     "post_process": "", 
     "processor": "NRF52840", 
-    "snapshot_version": "v1.1.2", 
+    "snapshot_version": "v1.1.3", 
     "toolchain": "ARM_GCC"
 }
