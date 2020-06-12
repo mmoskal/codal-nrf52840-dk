@@ -1,7 +1,7 @@
 MEMORY
 {
   SD (rx) : ORIGIN = 0x00000, LENGTH = 0x27000
-  FLASH (rx) : ORIGIN = 0x27000, LENGTH = 0xD0000
+  FLASH (rx) : ORIGIN = 0x27000, LENGTH = 0xca000
   RAM (rwx) : ORIGIN = 0x20008000, LENGTH = 0x38000
 }
 OUTPUT_FORMAT ("elf32-littlearm", "elf32-bigarm", "elf32-littlearm")
