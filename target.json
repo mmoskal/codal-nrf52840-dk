@@ -1,5 +1,5 @@
 {
-    "device":"BLUEBIRD",
+    "device":"NRF52840_DK",
     "processor":"NRF52840",
     "architecture":"CORTEX_M4F",
     "toolchain":"ARM_GCC",

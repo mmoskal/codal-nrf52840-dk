@@ -1,4 +1,4 @@
-project(codal-bluebird)
+project(codal-nrf52840-dk)
 
 include("${CODAL_UTILS_LOCATION}")
 
@@ -17,13 +17,13 @@ set(CMAKE_SYSTEM_PROCESSOR "armv7-m" PARENT_SCOPE)
 include_directories(${INCLUDE_DIRS} ${TOP_LEVEL_INCLUDE_DIRS} ${MODEL_INCLUDE_DIRS})
 
 # create our target
-add_library(codal-bluebird ${TOP_LEVEL_SOURCE_FILES} ${MODEL_SOURCE_FILES})
+add_library(codal-nrf52840-dk ${TOP_LEVEL_SOURCE_FILES} ${MODEL_SOURCE_FILES})
 
 target_link_libraries(
-    codal-bluebird
+    codal-nrf52840-dk
     codal-core
     codal-nrf52
 )
 
 # expose it to parent cmake.
-target_include_directories(codal-bluebird PUBLIC ${MODEL_INCLUDE_DIRS} ${TOP_LEVEL_INCLUDE_DIRS})
+target_include_directories(codal-nrf52840-dk PUBLIC ${MODEL_INCLUDE_DIRS} ${TOP_LEVEL_INCLUDE_DIRS})
