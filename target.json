@@ -48,7 +48,7 @@
         },
         {
             "name":"codal-nrf52",
-            "url":"https://github.com/JoeBakalor/codal-nrf52",
+            "url":"https://github.com/Teknikio/codal-nrf52",
             "branch":"master",
             "type":"git"
         }
