@@ -77,7 +77,7 @@ namespace codal
 
         public:
 
-            BLENanoIO                   io;
+            TeknikioDeviceIO                   io;
 
             NRFLowLevelTimer            timer1;
             Timer                       timer;
