@@ -43,7 +43,7 @@ DEALINGS IN THE SOFTWARE.
 #include "Timer.h"
 #include "NRF52Pin.h"
 
-#include "BLENanoIO.h"
+#include "TeknikioDeviceIO.h"
 #include "CodalFiber.h"
 #include "MessageBus.h"
 
