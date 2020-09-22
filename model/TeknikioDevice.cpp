@@ -23,21 +23,21 @@ DEALINGS IN THE SOFTWARE.
 */
 
 
-#include "BLENano.h"
+#include "TeknikioDevice.h"
 #include "Timer.h"
 #include "nrf.h"
 
 using namespace codal;
 
-BLENano *ble_nano_device_instance = NULL;
+TeknikioDevice *teknikio_device_instance = NULL;
 
 /**
   * Constructor.
   *
-  * Create a representation of a BLENano device, which includes member variables
-  * that represent various device drivers used to control aspects of the BLENano.
+  * Create a representation of a TeknikioDevice device, which includes member variables
+  * that represent various device drivers used to control aspects of the TeknikioDevice.
   */
-BLENano::BLENano() :
+TeknikioDevice::TeknikioDevice() :
     io(),
     timer1(NRF_TIMER1, TIMER1_IRQn),
     timer(timer1),
@@ -47,7 +47,7 @@ BLENano::BLENano() :
 {
     // Clear our status
     status = 0;
-    ble_nano_device_instance = this;
+    teknikio_device_instance = this;
 
     // Ensure NFC pins are configured as GPIO. If not, update the non-volatile UICR.
     if (NRF_UICR->NFCPINS)
@@ -88,7 +88,7 @@ BLENano::BLENano() :
   * @note This method must be called before user code utilises any functionality
   *       contained within the GenuinoZero class.
   */
-int BLENano::init()
+int TeknikioDevice::init()
 {
     if (status & DEVICE_INITIALIZED)
         return DEVICE_NOT_SUPPORTED;
@@ -110,7 +110,7 @@ int BLENano::init()
     // Create an event handler to trap any handlers being created for I2C services.
     // We do this to enable initialisation of those services only when they're used,
     // which saves processor time, memeory and battery life.
-    messageBus.listen(DEVICE_ID_MESSAGE_BUS_LISTENER, DEVICE_EVT_ANY, this, &BLENano::onListenerRegisteredEvent);
+    messageBus.listen(DEVICE_ID_MESSAGE_BUS_LISTENER, DEVICE_EVT_ANY, this, &TeknikioDevice::onListenerRegisteredEvent);
 
 #if CONFIG_ENABLED(DMESG_SERIAL_DEBUG)
 #if DEVICE_DMESG_BUFFER_SIZE > 0
@@ -130,7 +130,7 @@ int BLENano::init()
   * the compass and the accelerometer, where we only want to add them to the idle
   * fiber when someone has the intention of using these components.
   */
-void BLENano::onListenerRegisteredEvent(Event evt)
+void TeknikioDevice::onListenerRegisteredEvent(Event evt)
 {
 }
 
@@ -139,7 +139,7 @@ void BLENano::onListenerRegisteredEvent(Event evt)
   * We use this for any low priority, backgrounf housekeeping.
   *
   */
-void BLENano::idleCallback()
+void TeknikioDevice::idleCallback()
 {
 #if DEVICE_DMESG_BUFFER_SIZE > 0
     codal_dmesg_flush();
@@ -150,10 +150,10 @@ void nano_dmesg_flush()
 {
 #if CONFIG_ENABLED(DMESG_SERIAL_DEBUG)
 #if DEVICE_DMESG_BUFFER_SIZE > 0
-    // if (codalLogStore.ptr > 0 && ble_nano_device_instance)
+    // if (codalLogStore.ptr > 0 && teknikio_device_instance)
     // {
     //     for (uint32_t i=0; i<codalLogStore.ptr; i++)
-    //         ((BLENano *)ble_nano_device_instance)->serial.putc(codalLogStore.buffer[i]);
+    //         ((TeknikioDevice *)teknikio_device_instance)->serial.putc(codalLogStore.buffer[i]);
 
     //     codalLogStore.ptr = 0;
     // }

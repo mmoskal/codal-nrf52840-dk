@@ -1,7 +1,8 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2017 Lancaster University.
+Copyright (c) 2016 British Broadcasting Corporation.
+This software is provided by Lancaster University by arrangement with the BBC.
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
@@ -23,35 +24,28 @@ DEALINGS IN THE SOFTWARE.
 */
 
 /**
-  * Class definition for BLENano IO.
-  * Represents a collection of all I/O pins on the device.
-  */
-
-#include "CodalConfig.h"
-#include "BLENanoIO.h"
-#include "device_pinmap.h"
+ * Class definition for TeknikioDisplay
+ */
+#include "TeknikioDisplay.h"
 
 using namespace codal;
 
 /**
   * Constructor.
   *
-  * Create a representation of all given I/O pins on the edge connector
+  * Create a software representation of the micro:bit's 5x5 LED matrix.
+  * The display is initially blank.
   *
-  * Accepts a sequence of unique ID's used to distinguish events raised
-  * by NRF52Pin instances on the default EventModel.
+  * @param map The mapping information that relates pin inputs/outputs to physical screen coordinates.
+  * @param id The id the display should use when sending events on the MessageBus. Defaults to DEVICE_ID_DISPLAY.
   */
-BLENanoIO::BLENanoIO() :
-    P28 (ID_PIN_P28, P0_28, PIN_CAPABILITY_AD),
-    P29 (ID_PIN_P29, P0_29, PIN_CAPABILITY_AD),
-    P30 (ID_PIN_P30, P0_30, PIN_CAPABILITY_AD),
-    P2 (ID_PIN_P2, P0_2, PIN_CAPABILITY_AD),
-    P3 (ID_PIN_P3, P0_3, PIN_CAPABILITY_AD),
-    P4 (ID_PIN_P4, P0_4, PIN_CAPABILITY_AD),
-    P5 (ID_PIN_P5, P0_5, PIN_CAPABILITY_AD),
-    P6 (ID_PIN_P6, P0_6, PIN_CAPABILITY_AD),
-    P7 (ID_PIN_P7, P0_7, PIN_CAPABILITY_AD),
-    P8 (ID_PIN_P8, P0_8, PIN_CAPABILITY_AD),
-    led (ID_PIN_P9, P0_11, PIN_CAPABILITY_AD)
+TeknikioDisplay::TeknikioDisplay(const MatrixMap &map, uint16_t id) : LEDMatrix(map, id), AnimatedDisplay(*this, id)
+{
+}
+
+/**
+ * Destructor.
+ */
+TeknikioDisplay::~TeknikioDisplay()
 {
 }

@@ -1,10 +1,10 @@
-#include "BLENano.h"
+#include "TeknikioDevice.h"
 
-BLENano nano;
+TeknikioDevice device;
 
 int main()
 {
-    nano.init();
+    device.init();
 
     while(1)
     {
