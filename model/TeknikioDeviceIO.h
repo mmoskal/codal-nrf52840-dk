@@ -22,8 +22,8 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef BLE_NANO_IO_H
-#define BLE_NANO_IO_H
+#ifndef TEKNIKIO_DEVICE_IO_H
+#define TEKNIKIO_DEVICE_IO_H
 
 #include "CodalConfig.h"
 #include "NRF52Pin.h"
@@ -70,7 +70,7 @@ namespace codal
     /**
      * Represents a collection of all I/O pins exposed by the device.
      */
-    class BLENanoIO
+    class TeknikioDeviceIO
     {
         public:
 
@@ -95,7 +95,7 @@ namespace codal
              * Accepts a sequence of unique ID's used to distinguish events raised
              * by NRF52Pin instances on the default EventModel.
              */
-            BLENanoIO();
+            TeknikioDeviceIO();
     };
 }
 
