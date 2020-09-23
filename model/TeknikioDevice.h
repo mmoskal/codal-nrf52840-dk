@@ -63,19 +63,6 @@ DEALINGS IN THE SOFTWARE.
 namespace codal
 {
 
-    struct MatrixMap52
-    {
-        int         width;                      // The physical width of the LED matrix, in pixels.
-        int         height;                     // The physical height of the LED matrix, in pixels.
-        int         rows;                       // The number of drive pins connected to LEDs.
-        int         columns;                    // The number of sink pins connected to the LEDs.
-
-        NRF52Pin         **rowPins;                  // Array of pointers containing an ordered list of pins to drive.
-        NRF52Pin         **columnPins;               // Array of pointers containing an ordered list of pins to sink.
-
-        const       MatrixPoint *map;           // Table mapping logical LED positions to physical positions.
-    };
-
     class TeknikioDevice : public CodalComponent
     {
         private:
@@ -101,7 +88,7 @@ namespace codal
             NRF52Pin*                   ledRowPins[3];
             NRF52Pin*                   ledColPins[3];
             ZSingleWireSerial           sws;
-            const MatrixMap52           ledMatrixMap;
+            const MatrixMap             ledMatrixMap;
             TeknikioDisplay             display;
             NRF52Radio                  radio;
             //Button                      buttonA;

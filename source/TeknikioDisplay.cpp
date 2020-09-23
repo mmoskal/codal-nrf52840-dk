@@ -39,7 +39,7 @@ using namespace codal;
   * @param map The mapping information that relates pin inputs/outputs to physical screen coordinates.
   * @param id The id the display should use when sending events on the MessageBus. Defaults to DEVICE_ID_DISPLAY.
   */
-TeknikioDisplay::TeknikioDisplay(const MatrixMap &map, uint16_t id) : LEDMatrix(map, id), AnimatedDisplay(*this, id)
+TeknikioDisplay::TeknikioDisplay(const MatrixMap52 &map, uint16_t id) : //LEDMatrix(map, id), AnimatedDisplay(*this, id)
 {
 }
 
