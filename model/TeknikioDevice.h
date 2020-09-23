@@ -48,6 +48,7 @@ DEALINGS IN THE SOFTWARE.
 #include "MessageBus.h"
 
 #include "NRF52Radio.h"
+#include "TeknikioDisplay.h"
 
 // Status flag values
 #define DEVICE_INITIALIZED                    0x01
@@ -83,7 +84,8 @@ namespace codal
             Timer                       timer;
             MessageBus                  messageBus;
             ZSingleWireSerial           sws;
-
+            const MatrixMap             ledMatrixMap;
+            TeknikioDisplay             display;
             NRF52Radio                  radio;
             //Button                      buttonA;
 
