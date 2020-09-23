@@ -53,9 +53,9 @@ TeknikioDevice::TeknikioDevice() :
     messageBus(),
     sws(io.P30),
     radio(),
-    ledRowPins{&io.P28, &io.P29, &io.P30},
-    ledColPins{&io.P2, &io.P3, &io.P4},
-    ledMatrixMap{ 5, 6, 3, 3, (Pin**)ledRowPins, (Pin**)ledColPins, ledMatrixPositions},
+    ledRowPins{},
+    ledColPins{&io.BLUEBIRD_LED_1, &io.BLUEBIRD_LED_2, &io.BLUEBIRD_LED_3, &io.BLUEBIRD_LED_4, &io.BLUEBIRD_LED_5, &io.BLUEBIRD_LED_6},
+    ledMatrixMap{ 5, 6, 0, 6, (Pin**)ledRowPins, (Pin**)ledColPins, ledMatrixPositions},
     display(ledMatrixMap)
 {
     // Clear our status

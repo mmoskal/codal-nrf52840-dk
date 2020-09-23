@@ -64,6 +64,7 @@ DEALINGS IN THE SOFTWARE.
 #define ID_PIN_P29       (DEVICE_ID_IO_P0 + 29)
 #define ID_PIN_P30       (DEVICE_ID_IO_P0 + 30)
 #define ID_PIN_P31       (DEVICE_ID_IO_P0 + 31)
+#define ID_PIN_P1_9      (DEVICE_ID_IO_P0 + 32)
 
 namespace codal
 {
@@ -86,6 +87,12 @@ namespace codal
             NRF52Pin          P7;
             NRF52Pin          P8;
             NRF52Pin          led;
+            NRF52Pin          BLUEBIRD_LED_1;
+            NRF52Pin          BLUEBIRD_LED_2;		
+            NRF52Pin          BLUEBIRD_LED_3;		
+            NRF52Pin          BLUEBIRD_LED_4;			
+            NRF52Pin          BLUEBIRD_LED_5;			
+            NRF52Pin          BLUEBIRD_LED_6;		
 
             /**
              * Constructor.

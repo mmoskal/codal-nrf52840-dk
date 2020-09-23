@@ -85,8 +85,8 @@ namespace codal
             NRFLowLevelTimer            timer1;
             Timer                       timer;
             MessageBus                  messageBus;
-            Pin*                   ledRowPins[3];
-            Pin*                   ledColPins[3];
+            Pin*                        ledRowPins[0];
+            Pin*                        ledColPins[6];
             ZSingleWireSerial           sws;
             const MatrixMap             ledMatrixMap;
             TeknikioDisplay             display;
