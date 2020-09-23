@@ -88,7 +88,7 @@ namespace codal
             NRF52Pin*                   ledRowPins[3];
             NRF52Pin*                   ledColPins[3];
             ZSingleWireSerial           sws;
-            const MatrixMap             ledMatrixMap;
+            const MatrixMap52             ledMatrixMap;
             TeknikioDisplay             display;
             NRF52Radio                  radio;
             //Button                      buttonA;
