@@ -85,10 +85,10 @@ namespace codal
             NRFLowLevelTimer            timer1;
             Timer                       timer;
             MessageBus                  messageBus;
-            NRF52Pin*                   ledRowPins[3];
-            NRF52Pin*                   ledColPins[3];
+            Pin*                   ledRowPins[3];
+            Pin*                   ledColPins[3];
             ZSingleWireSerial           sws;
-            const MatrixMap52             ledMatrixMap;
+            const MatrixMap             ledMatrixMap;
             TeknikioDisplay             display;
             NRF52Radio                  radio;
             //Button                      buttonA;
