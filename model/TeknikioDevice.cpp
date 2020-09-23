@@ -53,6 +53,8 @@ TeknikioDevice::TeknikioDevice() :
     messageBus(),
     sws(io.P30),
     radio(),
+    ledRowPins{&io.row1, &io.row2, &io.row3},
+    ledColPins{&io.col1, &io.col2, &io.col3, &io.col4, &io.col5, &io.col6, &io.col7, &io.col8, &io.col9},
     ledMatrixMap{ 5, 6, 3, 9, (Pin**)ledRowPins, (Pin**)ledColPins, ledMatrixPositions},
     display(ledMatrixMap),
 {

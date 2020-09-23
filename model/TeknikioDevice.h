@@ -48,6 +48,7 @@ DEALINGS IN THE SOFTWARE.
 #include "MessageBus.h"
 
 #include "NRF52Radio.h"
+#include "NRF52Pin.h"
 #include "TeknikioDisplay.h"
 
 // Status flag values
@@ -83,6 +84,8 @@ namespace codal
             NRFLowLevelTimer            timer1;
             Timer                       timer;
             MessageBus                  messageBus;
+            NRF52Pin*                   ledRowPins[3];
+            NRF52Pin*                   ledColPins[9];
             ZSingleWireSerial           sws;
             const MatrixMap             ledMatrixMap;
             TeknikioDisplay             display;
