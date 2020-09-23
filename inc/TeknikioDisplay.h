@@ -33,23 +33,10 @@ DEALINGS IN THE SOFTWARE.
 #include "NRF52Pin.h"
 namespace codal
 {
-
-    struct MatrixMap52
-    {
-        int         width;                      // The physical width of the LED matrix, in pixels.
-        int         height;                     // The physical height of the LED matrix, in pixels.
-        int         rows;                       // The number of drive pins connected to LEDs.
-        int         columns;                    // The number of sink pins connected to the LEDs.
-
-        NRF52Pin    **rowPins;                  // Array of pointers containing an ordered list of pins to drive.
-        NRF52Pin    **columnPins;               // Array of pointers containing an ordered list of pins to sink.
-
-        const       MatrixPoint *map;           // Table mapping logical LED positions to physical positions.
-    };
     /**
      * Class definition for TeknikioDisplay
      */
-    class TeknikioDisplay //: public LEDMatrix, public AnimatedDisplay
+    class TeknikioDisplay : public LEDMatrix, public AnimatedDisplay
     {
         public:
 
@@ -63,7 +50,7 @@ namespace codal
          * @param id The id the display should use when sending events on the MessageBus. Defaults to DEVICE_ID_DISPLAY.
          *
          */
-        TeknikioDisplay(const MatrixMap52 &map, uint16_t id = DEVICE_ID_DISPLAY);
+        TeknikioDisplay(const MatrixMap &map, uint16_t id = DEVICE_ID_DISPLAY);
 
         /**
          * Destructor.
