@@ -56,7 +56,7 @@ TeknikioDevice::TeknikioDevice() :
     ledRowPins{&io.P28, &io.P29, &io.P30},
     ledColPins{&io.P2, &io.P3, &io.P4},
     ledMatrixMap{ 5, 6, 3, 3, (NRF52Pin**)ledRowPins, (NRF52Pin**)ledColPins, ledMatrixPositions},
-    display(ledMatrixMap),
+    display(ledMatrixMap)
 {
     // Clear our status
     status = 0;
