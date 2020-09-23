@@ -31,7 +31,7 @@ using namespace codal;
 
 TeknikioDevice *teknikio_device_instance = NULL;
 
-static const MatrixPoint ledMatrixPositions[5*5] =
+static const MatrixPoint ledMatrixPositions[5*6] =
 {
     {0,0},{0,1},{0,2},{0,3},{0,4},{0,5},
     {1,0},{1,1},{1,2},{1,3},{1,4},{1,5},
@@ -55,7 +55,7 @@ TeknikioDevice::TeknikioDevice() :
     radio(),
     ledRowPins{&io.row1, &io.row2, &io.row3},
     ledColPins{&io.col1, &io.col2, &io.col3, &io.col4, &io.col5, &io.col6, &io.col7, &io.col8, &io.col9},
-    ledMatrixMap{ 5, 6, 3, 9, (Pin**)ledRowPins, (Pin**)ledColPins, ledMatrixPositions},
+    ledMatrixMap{ 5, 6, 3, 9, (NRF52Pin**)ledRowPins, (NRF52Pin**)ledColPins, ledMatrixPositions},
     display(ledMatrixMap),
 {
     // Clear our status
