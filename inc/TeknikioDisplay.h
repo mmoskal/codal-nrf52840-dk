@@ -49,7 +49,7 @@ namespace codal
     /**
      * Class definition for TeknikioDisplay
      */
-    class TeknikioDisplay : public LEDMatrix, public AnimatedDisplay
+    class TeknikioDisplay //: public LEDMatrix, public AnimatedDisplay
     {
         public:
 
