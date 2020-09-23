@@ -53,9 +53,9 @@ TeknikioDevice::TeknikioDevice() :
     messageBus(),
     sws(io.P30),
     radio(),
-    ledRowPins{&io.row1, &io.row2, &io.row3},
-    ledColPins{&io.col1, &io.col2, &io.col3, &io.col4, &io.col5, &io.col6, &io.col7, &io.col8, &io.col9},
-    ledMatrixMap{ 5, 6, 3, 9, (NRF52Pin**)ledRowPins, (NRF52Pin**)ledColPins, ledMatrixPositions},
+    ledRowPins{&io.P28, &io.P29, &io.P30},
+    ledColPins{&io.P2, &io.P3, &io.P4},
+    ledMatrixMap{ 5, 6, 3, 3, (NRF52Pin**)ledRowPins, (NRF52Pin**)ledColPins, ledMatrixPositions},
     display(ledMatrixMap),
 {
     // Clear our status
