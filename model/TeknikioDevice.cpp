@@ -64,7 +64,7 @@ TeknikioDevice::TeknikioDevice() :
     // io.P29.setDigitalValue(1);
     // io.P31.setDigitalValue(1);
     // io.P2.setDigitalValue(1);
-    // io.P3.setDigitalValue(1);
+    BLUEBIRD_LED_1.P3.setDigitalValue(1);
     // Ensure NFC pins are configured as GPIO. If not, update the non-volatile UICR.
     if (NRF_UICR->NFCPINS)
     {
@@ -83,7 +83,7 @@ TeknikioDevice::TeknikioDevice() :
         // Reset, so the changes can take effect.
         NVIC_SystemReset();
     }
-    display.image.setPixelValue(0, 4, 0xff);
+    //display.image.setPixelValue(0, 4, 0xff);
     // Configure serial port for debugging
     //serial.set_flow_control(mbed::Serial::Disabled);
     // serial.baud(115200);
