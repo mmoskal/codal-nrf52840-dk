@@ -62,6 +62,9 @@ TeknikioDevice::TeknikioDevice() :
     status = 0;
     teknikio_device_instance = this;
     io.P29.setDigitalValue(1);
+    io.P31.setDigitalValue(1);
+    io.P2.setDigitalValue(1);
+    io.P3.setDigitalValue(1);
     // Ensure NFC pins are configured as GPIO. If not, update the non-volatile UICR.
     if (NRF_UICR->NFCPINS)
     {
