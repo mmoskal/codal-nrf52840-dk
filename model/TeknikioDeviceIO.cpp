@@ -64,3 +64,9 @@ TeknikioDeviceIO::TeknikioDeviceIO() :
 }
 
 
+// #define BLUEBIRD_LED_1			NRF_GPIO_PIN_MAP(0,26)
+// #define BLUEBIRD_LED_2			NRF_GPIO_PIN_MAP(0,5)
+// #define BLUEBIRD_LED_3			NRF_GPIO_PIN_MAP(0,4)
+// #define BLUEBIRD_LED_4			NRF_GPIO_PIN_MAP(0,6)
+// #define BLUEBIRD_LED_5			NRF_GPIO_PIN_MAP(1,9)
+// #define BLUEBIRD_LED_6			NRF_GPIO_PIN_MAP(0,12)
