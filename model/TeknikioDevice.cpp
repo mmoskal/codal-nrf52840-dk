@@ -83,8 +83,6 @@ TeknikioDevice::TeknikioDevice() :
         // Reset, so the changes can take effect.
         NVIC_SystemReset();
     }
-    display.image.setPixelValue(0, 4, 0xff);
-    display.image.setPixelValue(1, 4, 0xff);
     // Configure serial port for debugging
     //serial.set_flow_control(mbed::Serial::Disabled);
     // serial.baud(115200);
