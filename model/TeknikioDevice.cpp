@@ -85,11 +85,11 @@ TeknikioDevice::TeknikioDevice() :
     }
     display.image.setPixelValue(0 , 0, 255);
 
-    display.image.setPixelValue(0, 1, 255);
-    display.image.setPixelValue(0, 2, 255);
-    display.image.setPixelValue(0, 3, 255);
-    display.image.setPixelValue(0, 4, 255);
-    display.image.setPixelValue(0, 5, 255);
+    // display.image.setPixelValue(0, 1, 255);
+    // display.image.setPixelValue(0, 2, 255);
+    // display.image.setPixelValue(0, 3, 255);
+    // display.image.setPixelValue(0, 4, 255);
+    // display.image.setPixelValue(0, 5, 255);
 
     display.image.setPixelValue(1, 0, 255);
     display.image.setPixelValue(2, 0, 255);
