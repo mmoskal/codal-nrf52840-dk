@@ -94,7 +94,7 @@ typedef enum {
     p1_6 = p38,
     p1_7 = p39,
     p1_8 = p40,
-    P1_9  = p42,
+    P1_9  = p41,
 
     LED1 = p11,
     LED2 = p11,
