@@ -53,10 +53,8 @@ DEALINGS IN THE SOFTWARE.
 
 // Status flag values
 #define DEVICE_INITIALIZED                    0x01
-namespace codal
-{
-    extern TeknikioDevice *teknikio_device_instance;
-} // namespace pxt
+
+
 
 
 
@@ -68,6 +66,8 @@ namespace codal
  */
 namespace codal
 {
+
+    extern TeknikioDevice *teknikio_device_instance;
 
     class TeknikioDevice : public CodalComponent
     {
