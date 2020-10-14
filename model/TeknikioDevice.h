@@ -62,6 +62,7 @@ DEALINGS IN THE SOFTWARE.
  */
 namespace codal
 {
+    extern TeknikioDevice *teknikio_device_instance;
 
     class TeknikioDevice : public CodalComponent
     {
