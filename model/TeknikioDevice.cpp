@@ -30,7 +30,8 @@ DEALINGS IN THE SOFTWARE.
 using namespace codal;
 
 
-TeknikioDevice device;
+//TeknikioDevice device;
+
 TeknikioDevice *teknikio_device_instance = NULL;
 
 static const MatrixPoint ledMatrixPositions[5*6] =
