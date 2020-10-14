@@ -29,7 +29,9 @@ DEALINGS IN THE SOFTWARE.
 
 using namespace codal;
 
-TeknikioDevice teknikio_device_instance;
+
+TeknikioDevice device;
+TeknikioDevice *teknikio_device_instance = NULL;
 
 static const MatrixPoint ledMatrixPositions[5*6] =
 {
@@ -60,7 +62,7 @@ TeknikioDevice::TeknikioDevice() :
 {
     // Clear our status
     status = 0;
-    teknikio_device_instance = &this;
+    teknikio_device_instance = this;
     io.BLUEBIRD_LED_5.setDigitalValue(1);
     // io.P31.setDigitalValue(1);
     // io.P2.setDigitalValue(1);
