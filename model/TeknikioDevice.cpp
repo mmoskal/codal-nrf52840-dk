@@ -60,7 +60,7 @@ TeknikioDevice::TeknikioDevice() :
 {
     // Clear our status
     status = 0;
-    teknikio_device_instance = this;
+    bluebirdDevice = this;
     io.BLUEBIRD_LED_5.setDigitalValue(1);
     // io.P31.setDigitalValue(1);
     // io.P2.setDigitalValue(1);
