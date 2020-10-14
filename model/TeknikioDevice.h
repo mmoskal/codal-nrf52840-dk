@@ -54,6 +54,8 @@ DEALINGS IN THE SOFTWARE.
 // Status flag values
 #define DEVICE_INITIALIZED                    0x01
 
+extern TeknikioDevice *teknikio_device_instance;
+
 /**
  * Class definition for a TeknikioDevice device.
  *
