@@ -51,6 +51,8 @@ DEALINGS IN THE SOFTWARE.
 #include "NRF52Pin.h"
 #include "TeknikioDisplay.h"
 
+
+extern TeknikioDevice bluebirdDevice;
 // Status flag values
 #define DEVICE_INITIALIZED                    0x01
 
@@ -111,7 +113,7 @@ namespace codal
             /**
              * Post constructor initialisation method.
              */
-            int init();
+            virtual int init();
 
             /**
              * Delay execution for the given amount of time.
