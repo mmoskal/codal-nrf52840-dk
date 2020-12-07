@@ -83,7 +83,7 @@ TeknikioDevice::TeknikioDevice() :
         // Reset, so the changes can take effect.
         NVIC_SystemReset();
     }
-    
+    display.image.setPixelValue(5, 4, 255);
 
     // display.image.setPixelValue(0, 1, 255);
     // display.image.setPixelValue(0, 2, 255);
@@ -148,7 +148,6 @@ int TeknikioDevice::init()
 
     status |= DEVICE_COMPONENT_STATUS_IDLE_TICK;
 
-    display.image.setPixelValue(5, 4, 255);
     return DEVICE_OK;
 }
 
