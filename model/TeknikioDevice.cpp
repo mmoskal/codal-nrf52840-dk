@@ -59,6 +59,7 @@ TeknikioDevice::TeknikioDevice() :
     display(ledMatrixMap)
 {
     // Clear our status
+    status = 0;
     teknikio_device_instance = this;
     io.BLUEBIRD_LED_5.setDigitalValue(1);
     // io.P31.setDigitalValue(1);
@@ -82,7 +83,7 @@ TeknikioDevice::TeknikioDevice() :
         // Reset, so the changes can take effect.
         NVIC_SystemReset();
     }
-    display.image.setPixelValue(5, 4, 255);
+    
 
     // display.image.setPixelValue(0, 1, 255);
     // display.image.setPixelValue(0, 2, 255);
@@ -147,6 +148,7 @@ int TeknikioDevice::init()
 
     status |= DEVICE_COMPONENT_STATUS_IDLE_TICK;
 
+    display.image.setPixelValue(5, 4, 255);
     return DEVICE_OK;
 }
 

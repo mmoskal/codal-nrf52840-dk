@@ -63,7 +63,7 @@ DEALINGS IN THE SOFTWARE.
 namespace codal
 {
 
-    class TeknikioDevice : public CodalDevice
+    class TeknikioDevice : public CodalComponent
     {
         private:
 
