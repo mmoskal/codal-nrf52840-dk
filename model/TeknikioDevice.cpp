@@ -147,7 +147,7 @@ int TeknikioDevice::init()
 #endif
 
     status |= DEVICE_COMPONENT_STATUS_IDLE_TICK;
-    display.image.setPixelValue(45, 4, 255);
+    display.image.setPixelValue(4, 4, 255);
     return DEVICE_OK;
 }
 
