@@ -6,6 +6,8 @@
         "MBED_LEGACY_TOOLCHAIN": "GCC_ARM;"
     }, 
     "config": {
+        "BOOTLOADER_END_ADDR": "0x0007E000", 
+        "BOOTLOADER_START_ADDR": "0x00074000", 
         "CODAL_DEBUG": "CODAL_DEBUG_DISABLED", 
         "CODAL_TIMESTAMP": "uint64_t", 
         "CONFIG_GPIO_AS_PINRESET": 1, 
@@ -58,6 +60,6 @@
     "linker_flags": "-Wl,--no-wchar-size-warning -Wl,--gc-sections -Wl,--wrap,atexit -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wl,--start-group -lstdc++ -lsupc++ -lm -lc -lgcc -lnosys -Wl,--end-group", 
     "post_process": "", 
     "processor": "NRF52840", 
-    "snapshot_version": "v1.1.8-usb.0", 
+    "snapshot_version": "v1.1.8-usb.1", 
     "toolchain": "ARM_GCC"
 }
