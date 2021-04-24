@@ -3,7 +3,7 @@
     "processor":"NRF52840",
     "architecture":"CORTEX_M4F",
     "toolchain":"ARM_GCC",
-    "post_process":"",
+    "post_process":"python ./utils/uf2conv.py -b 0x26000 -f 0xADA52840 -o <OUTPUT_HEX_DESTINATION>/<OUTPUT_HEX_NAME>.uf2 -c <OUTPUT_BIN_LOCATION>",
     "generate_bin":true,
     "generate_hex":true,
     "definitions":"-DNRF52840_XXAA -DNRF52840 -DTARGET_MCU_NRF52840 -DNRF5 -D__CORTEX_M4 -DS140 -DTOOLCHAIN_GCC -D__START=target_start",
