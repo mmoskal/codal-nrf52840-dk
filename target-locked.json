@@ -58,8 +58,8 @@
         }
     ], 
     "linker_flags": "-Wl,--no-wchar-size-warning -Wl,--gc-sections -Wl,--wrap,atexit -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -Wl,--start-group -lstdc++ -lsupc++ -lm -lc -lgcc -lnosys -Wl,--end-group", 
-    "post_process": "", 
+    "post_process": "python ./utils/uf2conv.py -b 0x26000 -f 0xADA52840 -o <OUTPUT_HEX_DESTINATION>/<OUTPUT_HEX_NAME>.uf2 -c <OUTPUT_BIN_LOCATION>", 
     "processor": "NRF52840", 
-    "snapshot_version": "v1.1.8-usb.1", 
+    "snapshot_version": "v1.1.8-usb.2", 
     "toolchain": "ARM_GCC"
 }
