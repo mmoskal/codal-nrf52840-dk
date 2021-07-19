@@ -30,6 +30,7 @@ DEALINGS IN THE SOFTWARE.
 using namespace codal;
 
 TeknikioDevice *teknikio_device_instance = NULL;
+TeknikioDevice bluebird;
 
 static const MatrixPoint ledMatrixPositions[5*6] =
 {
